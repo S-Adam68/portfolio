@@ -24,14 +24,16 @@ themeToggle.addEventListener('click', () => {
 const burger = document.getElementById('burger');
 const navMobile = document.getElementById('nav-mobile');
 
-burger.addEventListener('click', () => {
-  navMobile.classList.toggle('open');
-  burger.classList.toggle('active');
-});
+if (burger && navMobile) {
+  burger.addEventListener('click', () => {
+    navMobile.classList.toggle('open');
+    burger.classList.toggle('active');
+  });
 
-navMobile.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => navMobile.classList.remove('open'));
-});
+  navMobile.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navMobile.classList.remove('open'));
+  });
+}
 
 // ===== Reveal on scroll =====
 const revealEls = document.querySelectorAll('.reveal');
