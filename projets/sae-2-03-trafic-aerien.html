@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAE 2.03 — Gestion du trafic aérien | Adam Sebar</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+
+<header class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">AS<span class="dot">.</span></a>
+    <nav class="nav-links">
+      <a href="../index.html#projects">← Retour au portfolio</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="theme-toggle" aria-label="Changer de thème">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <div class="breadcrumb reveal">
+    <a href="../index.html#projects">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Retour au portfolio
+    </a>
+  </div>
+
+  <div class="project-hero">
+    <span class="project-code reveal">SAE 2.03 — BUT R&amp;T, IUT de Colmar, 2025-2026</span>
+    <h1 class="reveal">Gestion du trafic aérien</h1>
+    <p class="hero-text reveal">
+      Application web (CRUD complet) permettant à un gestionnaire d'aéroports de piloter
+      aéroports, pistes, compagnies, types d'avions, avions et vols — avec attribution
+      automatique des pistes d'atterrissage et import de vols en masse.
+    </p>
+    <div class="team-badges reveal">
+      <span class="team-badge me">Adam Sebar (moi)</span>
+      <span class="team-badge">Jordan</span>
+      <span class="team-badge">Yacine</span>
+    </div>
+    <ul class="stack-tags reveal">
+      <li>Python 3</li><li>Django 6.0.5</li><li>MariaDB</li><li>Nginx</li><li>Gunicorn</li><li>Bootstrap 5.3</li><li>2 VM Debian</li>
+    </ul>
+    <div class="hero-actions reveal" style="margin-top:1.5rem;">
+      <a class="btn btn-primary" href="https://github.com/S-Adam68/sae-trafic-aerien" target="_blank" rel="noopener">Voir le code sur GitHub</a>
+      <a class="btn btn-ghost" href="gantt-trafic-aerien.html" target="_blank" rel="noopener">Voir le diagramme de Gantt</a>
+    </div>
+  </div>
+
+  <!-- CONTEXTE -->
+  <section class="section">
+    <div class="section-head reveal">
+      <span class="tag">01 — Contexte</span>
+      <h2>Contexte du projet</h2>
+    </div>
+    <div class="about-text reveal" style="max-width: 800px;">
+      <p>
+        Cette SAE (Situation d'Apprentissage et d'Évaluation) nous a été confiée en équipe de
+        trois (avec Jordan et Yacine) durant le second semestre de 1<sup>ère</sup> année de BUT R&amp;T.
+        L'objectif : développer une application web de gestion du trafic aérien entre aéroports,
+        avec un schéma de données couvrant <strong>aéroports, pistes d'atterrissage, compagnies
+        aériennes, types d'avions, avions et vols</strong>.
+      </p>
+      <p>
+        Le cahier des charges imposait un CRUD complet pour chaque entité, une logique
+        métier d'attribution automatique de piste (vérification de compatibilité piste/avion,
+        blocage de 10 minutes par piste autour de chaque atterrissage, proposition d'un créneau
+        +15 minutes en cas d'indisponibilité), un import de vols par fichier CSV, ainsi qu'une
+        fiche récapitulative des vols par aéroport et par période.
+      </p>
+      <p>
+        Nous avons choisi une stack <strong>Python/Django</strong> avec une base
+        <strong>MariaDB</strong>, déployée sur deux machines virtuelles Debian (une pour
+        l'application via Nginx + Gunicorn, une pour la base de données) — une organisation
+        proche d'un déploiement de production réelle.
+      </p>
+    </div>
+  </section>
+
+  <!-- TACHES PERSONNELLES -->
+  <section class="section">
+    <div class="section-head reveal">
+      <span class="tag">02 — Mon rôle</span>
+      <h2>Tâches que j'ai réalisées personnellement</h2>
+      <p class="section-sub">D'après notre répartition de travail (voir Gantt) : initialisation technique, schéma de données, deux CRUD, la logique métier centrale, l'import CSV et le déploiement.</p>
+    </div>
+    <div class="task-list">
+
+      <div class="task-item reveal">
+        <span class="task-icon">⚙️</span>
+        <div>
+          <h3>Initialisation du projet Django</h3>
+          <p>Mise en place du projet Django, de l'application <code>gestion</code> et de la configuration de base (settings, urls).</p>
+        </div>
+      </div>
+
+      <div class="task-item reveal">
+        <span class="task-icon">🗄️</span>
+        <div>
+          <h3>Conception du schéma de données (models.py) &amp; migrations</h3>
+          <p>Modélisation des 6 entités (Aéroport, Piste, Compagnie, TypeAvion, Avion, Vol) et de leurs relations (clés étrangères, <code>related_name</code> pour les deux liaisons d'un Vol vers Aéroport), puis génération des migrations Django.</p>
+        </div>
+      </div>
+
+      <div class="task-item reveal">
+        <span class="task-icon">✈️</span>
+        <div>
+          <h3>CRUD « Aéroport » et CRUD « Type d'avion »</h3>
+          <p>Implémentation complète (liste, création, modification, suppression) pour les aéroports et pour les types d'avions, y compris la gestion de l'image associée à chaque type d'avion.</p>
+        </div>
+      </div>
+
+      <div class="task-item critical reveal">
+        <span class="task-icon">🛬</span>
+        <div>
+          <h3>Logique métier critique : attribution automatique de piste</h3>
+          <p>Conception et implémentation de la fonction <code>trouver_piste_libre()</code> : filtrage des pistes compatibles avec le type d'avion, vérification de la disponibilité sur une fenêtre de ±10 minutes, et proposition d'un créneau +15 minutes si aucune piste n'est libre. C'était la tâche la plus complexe et la plus risquée du projet (identifiée comme critique sur notre Gantt).</p>
+        </div>
+      </div>
+
+      <div class="task-item reveal">
+        <span class="task-icon">📄</span>
+        <div>
+          <h3>Import de vols par fichier CSV</h3>
+          <p>Définition de la structure du fichier CSV attendu et implémentation de la fonctionnalité d'import en masse de vols pour un aéroport donné.</p>
+        </div>
+      </div>
+
+      <div class="task-item critical reveal">
+        <span class="task-icon">🖥️</span>
+        <div>
+          <h3>Mise en place de la VM &amp; déploiement</h3>
+          <p>Installation et configuration de la machine virtuelle Debian, puis participation à la rédaction de la procédure d'installation/déploiement (Nginx, Gunicorn, base de données) utilisée pour mettre le site en ligne sur les deux VMs.</p>
+        </div>
+      </div>
+
+      <div class="task-item reveal">
+        <span class="task-icon">🚀</span>
+        <div>
+          <h3>Documentation finale &amp; push GitHub</h3>
+          <p>Rédaction de la procédure d'installation, démonstration de la logique de piste à l'équipe, et push final du dépôt sur GitHub.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PREUVES -->
+  <section class="section">
+    <div class="section-head reveal">
+      <span class="tag">03 — Preuves</span>
+      <h2>Éléments de preuve</h2>
+      <p class="section-sub">Extraits de code et livrables attestant des tâches ci-dessus. Des captures d'écran de l'application seront ajoutées prochainement.</p>
+    </div>
+
+    <div class="proof-grid">
+      <div class="proof-card reveal">
+        <h3>📦 Dépôt GitHub complet</h3>
+        <p>Code source Django, scripts SQL, configuration de déploiement (Nginx, Gunicorn, MariaDB).</p>
+        <a class="project-link" href="https://github.com/S-Adam68/sae-trafic-aerien" target="_blank" rel="noopener">github.com/S-Adam68/sae-trafic-aerien →</a>
+      </div>
+      <div class="proof-card reveal">
+        <h3>📊 Diagramme de Gantt</h3>
+        <p>Planning détaillé des 9 séances et répartition des tâches entre Adam, Jordan et Yacine.</p>
+        <a class="project-link" href="gantt-trafic-aerien.html" target="_blank" rel="noopener">Voir le Gantt →</a>
+      </div>
+      <div class="proof-card reveal">
+        <h3>🗂️ Schéma relationnel</h3>
+        <p>Modèle de données complet (entités et relations) sur <code>docs/schema_relationnel.md</code> du dépôt.</p>
+        <a class="project-link" href="https://github.com/S-Adam68/sae-trafic-aerien/blob/main/SAE_Trafic_Aerien/docs/schema_relationnel.md" target="_blank" rel="noopener">Voir le schéma →</a>
+      </div>
+      <div class="proof-card proof-pending reveal">
+        <h3>🖼️ Captures d'écran de l'application</h3>
+        <p>À venir : interface de gestion des vols, formulaire de création avec suggestion de piste, fiche des vols par aéroport.</p>
+      </div>
+    </div>
+
+    <p class="section-sub" style="margin-bottom:1rem;">Extrait de code — la fonction <code>trouver_piste_libre()</code> que j'ai conçue (<code>gestion/views.py</code>) :</p>
+    <pre class="code-block reveal"><span class="comment"># Cette fonction cherche une piste disponible pour l'atterrissage.
+# Le sujet demande qu'une piste soit bloquée 10 minutes autour de chaque atterrissage.
+# On parcourt toutes les pistes de l'aéroport d'arrivée qui sont assez longues
+# pour le type d'avion, et on vérifie qu'aucun autre vol n'arrive au même moment.
+# Si toutes les pistes sont prises, on suggère 15 minutes plus tard.</span>
+<span class="kw">def</span> <span class="fn">trouver_piste_libre</span>(aeroport_arrivee, type_avion, heure_arrivee):
+
+    <span class="comment"># Pistes dont la longueur est suffisante pour ce type d'avion</span>
+    pistes_assez_longues = Piste.objects.filter(
+        aeroport=aeroport_arrivee,
+        longueur__gte=type_avion.longueur_piste_necessaire
+    )
+
+    <span class="kw">if</span> <span class="kw">not</span> pistes_assez_longues:
+        <span class="kw">return</span> <span class="kw">None</span>, <span class="kw">None</span>
+
+    <span class="kw">for</span> piste <span class="kw">in</span> pistes_assez_longues:
+        debut_occupation = heure_arrivee - timedelta(minutes=10)
+        fin_occupation = heure_arrivee + timedelta(minutes=10)
+
+        vols_sur_cette_piste = Vol.objects.filter(
+            piste_arrivee=piste,
+            datetime_arrivee__gte=debut_occupation,
+            datetime_arrivee__lte=fin_occupation
+        )
+
+        <span class="kw">if</span> <span class="kw">not</span> vols_sur_cette_piste:
+            <span class="kw">return</span> piste, heure_arrivee
+
+    <span class="comment"># Aucune piste n'est libre : on propose un créneau 15 minutes plus tard</span>
+    heure_suggeree = heure_arrivee + timedelta(minutes=15)
+    <span class="kw">return</span> <span class="kw">None</span>, heure_suggeree</pre>
+  </section>
+
+  <!-- COMPETENCES -->
+  <section class="section">
+    <div class="section-head reveal">
+      <span class="tag">04 — Compétences</span>
+      <h2>Compétences acquises &amp; progression</h2>
+      <p class="section-sub">Mises en évidence par ce projet, en lien avec le référentiel BUT R&amp;T.</p>
+    </div>
+    <div class="skills-pill-grid reveal">
+      <span class="skills-pill"><span class="skill-code">AC3x</span> Conception d'un modèle de données relationnel (Django ORM)</span>
+      <span class="skills-pill"><span class="skill-code">AC3x</span> Développement d'un CRUD complet (formulaires, vues, templates)</span>
+      <span class="skills-pill"><span class="skill-code">AC3x</span> Algorithmique appliquée à une contrainte métier réelle</span>
+      <span class="skills-pill"><span class="skill-code">AC1x</span> Administration système (VM Debian, services)</span>
+      <span class="skills-pill"><span class="skill-code">AC1x</span> Déploiement web (Nginx, Gunicorn, MariaDB)</span>
+      <span class="skills-pill"><span class="skill-code">AC4x</span> Manipulation et import de données structurées (CSV)</span>
+      <span class="skills-pill"><span class="skill-code">Soft skill</span> Travail en équipe &amp; planification (Gantt)</span>
+    </div>
+
+    <div class="about-text reveal" style="max-width:800px; margin-top:1.75rem;">
+      <p>
+        Ce projet m'a permis de passer d'une logique de scripts isolés (comme en SAE 1.05) à la
+        conception d'une <strong>application web complète avec base de données relationnelle</strong>.
+        La fonction d'attribution de piste a été l'occasion de traduire une contrainte métier
+        écrite en langage naturel (« 10 minutes d'usage avant qu'une piste ne soit libre,
+        sinon proposer +15 minutes ») en algorithme testable — une compétence que je compte
+        réutiliser pour des projets liés à l'automatisation côté CRM dans mon activité freelance.
+        La partie déploiement (VM, Nginx, Gunicorn) m'a aussi donné une première expérience
+        concrète d'administration système en conditions proches de la production.
+      </p>
+    </div>
+  </section>
+
+  <!-- ENGLISH SUMMARY -->
+  <section class="section">
+    <div class="section-head reveal">
+      <span class="tag">05 — English summary</span>
+      <h2>Project summary (English)</h2>
+    </div>
+    <div class="summary-en reveal">
+      <p>
+        As part of a 3-person team project for our first-year Network &amp; Telecommunications
+        degree (BUT R&amp;T, IUT de Colmar), we built a <strong>Django web application to manage
+        air traffic between airports</strong>, with full CRUD operations for airports, runways,
+        airlines, aircraft types, aircraft, and flights, backed by a MariaDB database and
+        deployed across two Debian virtual machines (Nginx + Gunicorn for the app, MariaDB
+        for the database).
+      </p>
+      <p>
+        My personal contributions were the <strong>initial Django setup, the full database
+        schema and migrations</strong>, the <strong>CRUD for Airports and Aircraft Types</strong>,
+        the <strong>CSV bulk-import feature for flights</strong>, and — the most critical part —
+        the <strong>runway-allocation algorithm</strong>, which checks whether a runway is long
+        enough for a given aircraft type and free within a ±10-minute window around the landing
+        time, suggesting a +15-minute delay if no runway is available. I also set up the
+        deployment virtual machine and helped write the installation procedure.
+      </p>
+      <p>
+        This project strengthened my skills in <strong>relational database design, Django
+        development, business-logic algorithms, and basic system administration/deployment</strong> —
+        directly relevant to my goal of working at the intersection of infrastructure,
+        automation and client-facing tools.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 Adam Sebar — Portfolio BUT Réseaux &amp; Télécommunications, IUT de Colmar.</p>
+</footer>
+
+<script src="../js/script.js"></script>
+</body>
+</html>

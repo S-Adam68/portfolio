@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Gantt — SAÉ Trafic Aérien</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  background: #f0f2f5;
+  padding: 28px;
+}
+h1 { font-size: 19px; font-weight: 700; color: #111827; margin-bottom: 3px; }
+.sub { font-size: 12px; color: #6b7280; margin-bottom: 16px; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 18px; }
+.leg { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: #374151; }
+.leg-dot { width: 14px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+.gantt {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.09);
+  overflow: hidden;
+  min-width: 800px;
+}
+
+.row {
+  display: flex;
+  height: 31px;
+  border-bottom: 1px solid #f3f4f6;
+}
+.row:hover { background: #fafafa; }
+.row:last-child { border-bottom: none; }
+
+.lbl {
+  width: 210px;
+  min-width: 210px;
+  padding: 0 11px;
+  font-size: 11.5px;
+  color: #4b5563;
+  display: flex;
+  align-items: center;
+  border-right: 2px solid #e5e7eb;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+}
+
+.ch {
+  flex: 1;
+  position: relative;
+  background: linear-gradient(90deg,
+    #eef2ff 0%,  #eef2ff 26.9%,
+    #fff    26.9%, #fff    53.8%,
+    #eef2ff 53.8%, #eef2ff 80.8%,
+    #fff    80.8%, #fff    100%
+  );
+}
+
+.ch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+    rgba(99,102,241,.25) 0%,          rgba(99,102,241,.25) .18%,
+    transparent .18%,                  transparent 7.62%,
+    rgba(99,102,241,.2)  7.62%,        rgba(99,102,241,.2)  7.8%,
+    transparent 7.8%,                  transparent 38.3%,
+    rgba(99,102,241,.2)  38.3%,        rgba(99,102,241,.2)  38.5%,
+    transparent 38.5%,                 transparent 53.6%,
+    rgba(220,38,38,.3)   53.6%,        rgba(220,38,38,.3)   53.8%,
+    transparent 53.8%,                 transparent 61.3%,
+    rgba(99,102,241,.2)  61.3%,        rgba(99,102,241,.2)  61.5%,
+    transparent 61.5%,                 transparent 65.2%,
+    rgba(220,38,38,.3)   65.2%,        rgba(220,38,38,.3)   65.4%,
+    transparent 65.4%,                 transparent 80.6%,
+    rgba(99,102,241,.2)  80.6%,        rgba(99,102,241,.2)  80.8%,
+    transparent 80.8%,                 transparent 84.4%,
+    rgba(99,102,241,.2)  84.4%,        rgba(99,102,241,.2)  84.6%,
+    transparent 84.6%,                 transparent 96.0%,
+    rgba(99,102,241,.2)  96.0%,        rgba(99,102,241,.2)  96.2%,
+    transparent 96.2%
+  );
+}
+
+.bar {
+  position: absolute;
+  height: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 3px;
+  z-index: 1;
+}
+.b-col    { background: #6366f1; }
+.b-crit   { background: #ef4444; }
+.b-adam   { background: #3b82f6; }
+.b-jordan { background: #10b981; }
+.b-yacine { background: #f59e0b; }
+.b-pa  { background: rgba(59,130,246,.38);  border: 1.5px dashed #3b82f6;  height: 13px; }
+.b-pj  { background: rgba(16,185,129,.38);  border: 1.5px dashed #10b981;  height: 13px; }
+.b-py  { background: rgba(245,158,11,.38);  border: 1.5px dashed #f59e0b;  height: 13px; }
+
+.sec { background: #1f2937; height: 28px; }
+.sec .lbl { color: #f9fafb; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; background: #1f2937; border-right-color: rgba(255,255,255,.15); }
+.sec .ch  { background: #1f2937; }
+.sec .ch::after { display: none; }
+.sec.c-col    .lbl, .sec.c-col    { background: #4338ca; }
+.sec.c-adam   .lbl, .sec.c-adam   { background: #1d4ed8; }
+.sec.c-jordan .lbl, .sec.c-jordan { background: #065f46; }
+.sec.c-yacine .lbl, .sec.c-yacine { background: #92400e; }
+
+.dh { background: #f9fafb; height: 38px; border-bottom: 2px solid #d1d5db; }
+.dh .lbl { background: #f9fafb; color: #9ca3af; font-style: italic; font-size: 11px; }
+.dh .ch  { background: #f9fafb; }
+.dh .ch::after { display: none; }
+.dtick {
+  position: absolute;
+  top: 5px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #6b7280;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.dtick::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 6px;
+  background: #9ca3af;
+  margin: 3px auto 0;
+}
+.dtick.crit { color: #dc2626; }
+.dtick.crit::after { background: #dc2626; }
+
+.alt .lbl, .alt .ch { background-color: #f9fafb; }
+.alt .ch { background-image: linear-gradient(90deg,
+    #e8edff 0%,   #e8edff 26.9%,
+    #f9fafb 26.9%, #f9fafb 53.8%,
+    #e8edff 53.8%, #e8edff 80.8%,
+    #f9fafb 80.8%, #f9fafb 100%
+  );
+}
+</style>
+</head>
+<body>
+
+<h1>Diagramme de Gantt — SAÉ Gestion du Trafic Aérien</h1>
+<p class="sub">Équipe : Adam · Jordan · Yacine &nbsp;|&nbsp; 18 mai – 12 juin 2026 &nbsp;|&nbsp; 9 séances ~3h</p>
+
+<div class="legend">
+  <div class="leg"><div class="leg-dot" style="background:#6366f1"></div>Séance collectif</div>
+  <div class="leg"><div class="leg-dot" style="background:#3b82f6"></div>Adam (séance)</div>
+  <div class="leg"><div class="leg-dot" style="background:#10b981"></div>Jordan (séance)</div>
+  <div class="leg"><div class="leg-dot" style="background:#f59e0b"></div>Yacine (séance)</div>
+  <div class="leg"><div class="leg-dot" style="background:rgba(59,130,246,.38);border:1.5px dashed #3b82f6"></div>Travail perso (entre séances)</div>
+  <div class="leg"><div class="leg-dot" style="background:#ef4444"></div>Tâche critique ⚠️</div>
+</div>
+
+<div class="gantt">
+  <div class="row dh">
+    <div class="lbl">Tâche / Période</div>
+    <div class="ch">
+      <span class="dtick"      style="left:0%">18/05</span>
+      <span class="dtick"      style="left:7.7%">20/05</span>
+      <span class="dtick"      style="left:38.5%">28/05</span>
+      <span class="dtick crit" style="left:53.8%">01/06</span>
+      <span class="dtick"      style="left:61.5%">03/06</span>
+      <span class="dtick crit" style="left:65.4%">04/06</span>
+      <span class="dtick"      style="left:80.8%">08/06</span>
+      <span class="dtick"      style="left:84.6%">09/06</span>
+      <span class="dtick"      style="left:96.2%">12/06</span>
+    </div>
+  </div>
+
+  <div class="row sec c-col"><div class="lbl">Séances (collectif)</div><div class="ch"></div></div>
+  <div class="row">     <div class="lbl">S1 · Appropriation + planification</div><div class="ch"><div class="bar b-col"  style="left:0%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">S2 · Planification finale + setup</div> <div class="ch"><div class="bar b-col"  style="left:7.7%;width:3.8%"></div></div></div>
+  <div class="row">     <div class="lbl">S3 · Intégration CRUD</div>              <div class="ch"><div class="bar b-col"  style="left:38.5%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">S4 · Logique piste ⚠️</div>             <div class="ch"><div class="bar b-crit" style="left:53.8%;width:3.8%"></div></div></div>
+  <div class="row">     <div class="lbl">S5 · Import CSV + Fiche vols</div>       <div class="ch"><div class="bar b-col"  style="left:61.5%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">S6 · VM Linux + Déploiement ⚠️</div>    <div class="ch"><div class="bar b-crit" style="left:65.4%;width:3.8%"></div></div></div>
+  <div class="row">     <div class="lbl">S7 · Documentation + Portfolio</div>     <div class="ch"><div class="bar b-col"  style="left:80.8%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">S8 · Slides + Répétition 1</div>         <div class="ch"><div class="bar b-col"  style="left:84.6%;width:3.8%"></div></div></div>
+  <div class="row">     <div class="lbl">S9 · Répétition finale + Push</div>      <div class="ch"><div class="bar b-col"  style="left:96.2%;width:3.8%"></div></div></div>
+
+  <div class="row sec c-adam"><div class="lbl">Adam</div><div class="ch"></div></div>
+  <div class="row">     <div class="lbl">[S1] Setup projet Django</div>            <div class="ch"><div class="bar b-adam" style="left:0%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[Perso] Préparer models.py</div>          <div class="ch"><div class="bar b-pa"   style="left:3.8%;width:3.8%"></div></div></div>
+  <div class="row">     <div class="lbl">[S2] models.py + migrations</div>         <div class="ch"><div class="bar b-adam" style="left:7.7%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[Perso] CRUD Aéroport</div>               <div class="ch"><div class="bar b-pa"   style="left:11.5%;width:26.9%"></div></div></div>
+  <div class="row">     <div class="lbl">[S3] CRUD TypeAvion</div>                 <div class="ch"><div class="bar b-adam" style="left:38.5%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[Perso] Algo disponibilité piste</div>   <div class="ch"><div class="bar b-pa"   style="left:42.3%;width:11.5%"></div></div></div>
+  <div class="row">     <div class="lbl">[S4] trouver_piste_disponible()</div>    <div class="ch"><div class="bar b-crit" style="left:53.8%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[Perso] Structure import CSV</div>       <div class="ch"><div class="bar b-pa"   style="left:57.7%;width:3.8%"></div></div></div>
+  <div class="row">     <div class="lbl">[S5] Import CSV</div>                     <div class="ch"><div class="bar b-adam" style="left:61.5%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[Perso] Installer VM Ubuntu</div>         <div class="ch"><div class="bar b-pa"   style="left:61.5%;width:3.8%"></div></div></div>
+  <div class="row">     <div class="lbl">[S6] MariaDB sur VM2</div>                <div class="ch"><div class="bar b-crit" style="left:65.4%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[Perso] Brouillon procédure install.</div><div class="ch"><div class="bar b-pa"   style="left:69.2%;width:11.5%"></div></div></div>
+  <div class="row">     <div class="lbl">[S7] Procédure install. + Portfolio</div> <div class="ch"><div class="bar b-adam" style="left:80.8%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[S8] Démo logique piste</div>             <div class="ch"><div class="bar b-adam" style="left:84.6%;width:3.8%"></div></div></div>
+  <div class="row">     <div class="lbl">[S9] Push final GitHub</div>              <div class="ch"><div class="bar b-adam" style="left:96.2%;width:3.8%"></div></div></div>
+
+  <div class="row sec c-jordan"><div class="lbl">Jordan</div><div class="ch"></div></div>
+  <div class="row">     <div class="lbl">[S1] Créer dépôt GitHub</div>             <div class="ch"><div class="bar b-jordan" style="left:0%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[Perso] Schéma BDD</div>                  <div class="ch"><div class="bar b-pj"     style="left:3.8%;width:3.8%"></div></div></div>
+  <div class="row">     <div class="lbl">[S2] Pousser schéma + Gantt</div>         <div class="ch"><div class="bar b-jordan" style="left:7.7%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[Perso] CRUD Piste</div>                  <div class="ch"><div class="bar b-pj"     style="left:11.5%;width:26.9%"></div></div></div>
+  <div class="row">     <div class="lbl">[S3] CRUD Avion</div>                     <div class="ch"><div class="bar b-jordan" style="left:38.5%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[Perso] Données de test piste</div>       <div class="ch"><div class="bar b-pj"     style="left:42.3%;width:11.5%"></div></div></div>
+  <div class="row">     <div class="lbl">[S4] Intégrer logique vol_create</div>    <div class="ch"><div class="bar b-crit"   style="left:53.8%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[Perso] Fichiers CSV de test</div>        <div class="ch"><div class="bar b-pj"     style="left:57.7%;width:3.8%"></div></div></div>
+  <div class="row">     <div class="lbl">[S5] Fiche des vols</div>                 <div class="ch"><div class="bar b-jordan" style="left:61.5%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[Perso] Lire doc Nginx + Gunicorn</div>   <div class="ch"><div class="bar b-pj"     style="left:61.5%;width:3.8%"></div></div></div>
+  <div class="row">     <div class="lbl">[S6] settings.py + Nginx</div>            <div class="ch"><div class="bar b-crit"   style="left:65.4%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[Perso] Fiche portfolio</div>             <div class="ch"><div class="bar b-pj"     style="left:69.2%;width:11.5%"></div></div></div>
+  <div class="row">     <div class="lbl">[S7] Relire procédure install.</div>      <div class="ch"><div class="bar b-jordan" style="left:80.8%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[S8] Démo CSV + fiche vols</div>          <div class="ch"><div class="bar b-jordan" style="left:84.6%;width:3.8%"></div></div></div>
+  <div class="row">     <div class="lbl">[S9] Répétition finale</div>              <div class="ch"><div class="bar b-jordan" style="left:96.2%;width:3.8%"></div></div></div>
+
+  <div class="row sec c-yacine"><div class="lbl">Yacine</div><div class="ch"></div></div>
+  <div class="row">     <div class="lbl">[S1] Ébauche Gantt</div>                  <div class="ch"><div class="bar b-yacine" style="left:0%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[Perso] Finaliser Gantt</div>             <div class="ch"><div class="bar b-py"     style="left:3.8%;width:3.8%"></div></div></div>
+  <div class="row">     <div class="lbl">[S2] Template base + page accueil</div>   <div class="ch"><div class="bar b-yacine" style="left:7.7%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[Perso] CRUD Compagnie</div>              <div class="ch"><div class="bar b-py"     style="left:11.5%;width:26.9%"></div></div></div>
+  <div class="row">     <div class="lbl">[S3] Formulaire Vol de base</div>         <div class="ch"><div class="bar b-yacine" style="left:38.5%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[Perso] Template Vol complet</div>        <div class="ch"><div class="bar b-py"     style="left:42.3%;width:11.5%"></div></div></div>
+  <div class="row">     <div class="lbl">[S4] CRUD Vol complet</div>               <div class="ch"><div class="bar b-yacine" style="left:53.8%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[Perso] Début fixtures</div>              <div class="ch"><div class="bar b-py"     style="left:57.7%;width:3.8%"></div></div></div>
+  <div class="row">     <div class="lbl">[S5] Fixtures + tests appli</div>         <div class="ch"><div class="bar b-yacine" style="left:61.5%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[Perso] Liste commandes install.</div>    <div class="ch"><div class="bar b-py"     style="left:61.5%;width:3.8%"></div></div></div>
+  <div class="row">     <div class="lbl">[S6] Gunicorn systemd</div>               <div class="ch"><div class="bar b-crit"   style="left:65.4%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[Perso] Fiche portfolio</div>             <div class="ch"><div class="bar b-py"     style="left:69.2%;width:11.5%"></div></div></div>
+  <div class="row">     <div class="lbl">[S7] Push docs GitHub</div>               <div class="ch"><div class="bar b-yacine" style="left:80.8%;width:3.8%"></div></div></div>
+  <div class="row alt"> <div class="lbl">[S8] Présenter Gantt + déploiement</div>  <div class="ch"><div class="bar b-yacine" style="left:84.6%;width:3.8%"></div></div></div>
+  <div class="row">     <div class="lbl">[S9] Vérifier démo sur VM</div>           <div class="ch"><div class="bar b-yacine" style="left:96.2%;width:3.8%"></div></div></div>
+</div>
+</body>
+</html>
