@@ -293,7 +293,7 @@
         <ul class="tech-list">
           <li>Python</li><li>PyQt5</li><li>PyQtChart</li><li>PowerShell</li><li>JSON</li>
         </ul>
-        <a class="project-link" href="https://github.com/S-Adam68" target="_blank" rel="noopener">Voir le code →</a>
+        <button class="project-link" onclick="openPopup('p-sae105')">Voir les preuves &amp; compétences →</button>
       </article>
 
       <article class="project-card reveal">
@@ -309,6 +309,7 @@
         <ul class="tech-list">
           <li>Réseaux</li><li>Câblage</li><li>Packet Tracer</li>
         </ul>
+        <button class="project-link" onclick="openPopup('p-sae101')">Voir les preuves &amp; compétences →</button>
       </article>
 
       <article class="project-card reveal">
@@ -324,6 +325,7 @@
         <ul class="tech-list">
           <li>VLAN</li><li>Adressage IP</li><li>Switch / Routeur</li>
         </ul>
+        <button class="project-link" onclick="openPopup('p-sae104')">Voir les preuves &amp; compétences →</button>
       </article>
 
       <article class="project-card featured reveal">
@@ -341,7 +343,10 @@
         <ul class="tech-list">
           <li>Python</li><li>Django</li><li>MariaDB</li><li>Nginx</li><li>Gunicorn</li>
         </ul>
-        <a class="project-link" href="projets/sae-2-03-trafic-aerien.html">Voir la page du projet →</a>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:auto;">
+          <button class="project-link" onclick="openPopup('p-sae203')">Voir les preuves &amp; compétences →</button>
+          <a class="project-link" href="projets/sae-2-03-trafic-aerien.html">Page dédiée →</a>
+        </div>
       </article>
 
       <article class="project-card reveal">
@@ -357,6 +362,7 @@
         <ul class="tech-list">
           <li>WiFi</li><li>Points d'accès</li><li>Relevés radio</li>
         </ul>
+        <button class="project-link" onclick="openPopup('p-sae204')">Voir les preuves &amp; compétences →</button>
       </article>
 
       <article class="project-card reveal">
@@ -373,11 +379,10 @@
         <ul class="tech-list">
           <li>Cybersécurité</li><li>Production vidéo</li><li>Sensibilisation</li>
         </ul>
+        <button class="project-link" onclick="openPopup('p-cyber')">Voir les preuves &amp; compétences →</button>
       </article>
 
     </div>
-
-    <p class="proof-note reveal">📎 Preuves &amp; livrables détaillés à venir pour chaque projet.</p>
   </section>
 
   <!-- EXPERIENCE -->
@@ -458,6 +463,328 @@
       </div>
     </div>
   </section>
+
+<!-- ========== POPUPS PREUVES ========== -->
+
+<!-- SAE 1.05 -->
+<div class="popup-overlay" id="p-sae105">
+  <div class="popup-box">
+    <div class="popup-close"><button onclick="closePopup('p-sae105')">✕</button></div>
+    <span class="popup-code-badge">SAE 1.05</span>
+    <h2>Outil de détection des gros fichiers</h2>
+
+    <div class="popup-section">
+      <h4>📋 Contexte</h4>
+      <p>Application desktop développée en Python/PyQt5 pour analyser une arborescence de fichiers, identifier les fichiers ≥ 1 Mio et générer automatiquement un script PowerShell de suppression sécurisé (avec double confirmation).</p>
+    </div>
+
+    <div class="popup-section">
+      <h4>🛠️ Tâches réalisées personnellement</h4>
+      <ul>
+        <li><strong>Module d'analyse</strong> : parcours récursif de l'arborescence, filtrage par taille, export JSON.</li>
+        <li><strong>Interface graphique PyQt5</strong> : fenêtre principale, onglets, graphique camembert interactif (PyQtChart), légende paginée (25 items/page).</li>
+        <li><strong>Génération du script PowerShell</strong> : construction du fichier <code>Suppression_Fichiers.ps1</code> avec double confirmation "OUI".</li>
+      </ul>
+    </div>
+
+    <div class="popup-section">
+      <h4>🖼️ Preuves</h4>
+      <div class="proof-visual">
+        <div class="proof-placeholder">📎 Capture d'écran à venir (interface + graphique camembert)</div>
+        <pre class="popup-code"><span class="cm"># Analyse_Arborescence_.py — parcours récursif</span>
+<span class="kw">def</span> <span class="fn">analyser</span>(repertoire):
+    resultats = []
+    <span class="kw">for</span> racine, dossiers, fichiers <span class="kw">in</span> os.walk(repertoire):
+        <span class="kw">for</span> f <span class="kw">in</span> fichiers:
+            chemin = os.path.join(racine, f)
+            taille = os.path.getsize(chemin)
+            <span class="kw">if</span> taille >= TAILLE_MINI_FICHIER_EN_MEBI_OCTET * <span class="nm">1024</span> * <span class="nm">1024</span>:
+                resultats.append([chemin, taille])
+    <span class="kw">return</span> resultats[:<span class="nm">NB_MAXI_FICHIERS</span>]</pre>
+      </div>
+    </div>
+
+    <div class="popup-section">
+      <h4>🎓 Apprentissages Critiques (AC) validés</h4>
+      <ul class="ac-list">
+        <li><strong>AC23.01</strong> — Utiliser des outils informatiques et logiciels de traitement de données.<br><span class="ac-justif">Justification : J'ai développé l'application complète en Python (analyse, GUI PyQt5, export JSON), produisant un outil fonctionnel de traitement de données fichier.</span></li>
+        <li><strong>AC13.02</strong> — Administrer et gérer les ressources du poste de travail et les scripts.<br><span class="ac-justif">Justification : J'ai écrit le script PowerShell d'automatisation de la suppression, orchestré par un script PS1 principal.</span></li>
+      </ul>
+    </div>
+
+    <div class="popup-section">
+      <h4>🎯 Composantes Essentielles (CE) mobilisées</h4>
+      <ul class="ac-list ce">
+        <li><strong>CE3.01</strong> — Utiliser des langages de programmation adaptés au domaine.<br><span class="ac-justif">Action : Python pour l'analyse et l'interface graphique, PowerShell pour la gestion système.</span></li>
+        <li><strong>CE3.03</strong> — Concevoir et réaliser des outils logiciels pour les services réseaux.<br><span class="ac-justif">Action : Conception d'un outil complet de gestion des ressources disque avec interface utilisateur dédiée.</span></li>
+      </ul>
+    </div>
+
+    <div class="popup-actions">
+      <a class="btn-popup primary" href="https://github.com/S-Adam68" target="_blank" rel="noopener">Voir le code GitHub</a>
+    </div>
+  </div>
+</div>
+
+<!-- SAE 1.01 -->
+<div class="popup-overlay" id="p-sae101">
+  <div class="popup-box">
+    <div class="popup-close"><button onclick="closePopup('p-sae101')">✕</button></div>
+    <span class="popup-code-badge">SAE 1.01</span>
+    <h2>S'initier aux réseaux informatiques et télécommunications</h2>
+
+    <div class="popup-section">
+      <h4>📋 Contexte</h4>
+      <p>Première SAE du BUT R&T, orientée découverte : compréhension du modèle OSI, adressage IP, câblage cuivre (T568B) et configuration d'équipements réseau simples en salle de TP.</p>
+    </div>
+
+    <div class="popup-section">
+      <h4>🛠️ Tâches réalisées personnellement</h4>
+      <ul>
+        <li><strong>Câblage</strong> : réalisation de câbles droits et croisés avec sertissage RJ45 (norme T568B).</li>
+        <li><strong>Adressage IP</strong> : calcul de sous-réseaux, plan d'adressage VLSM.</li>
+        <li><strong>Configuration de base</strong> : paramétrage d'un switch et d'un routeur via console (Packet Tracer).</li>
+        <li><strong>Documentation</strong> : rédaction du compte-rendu de TP.</li>
+      </ul>
+    </div>
+
+    <div class="popup-section">
+      <h4>🖼️ Preuves</h4>
+      <div class="proof-visual">
+        <div class="proof-placeholder">📎 Schéma de topologie réseau à venir</div>
+        <div class="proof-placeholder">📎 Plan d'adressage IP à venir</div>
+      </div>
+    </div>
+
+    <div class="popup-section">
+      <h4>🎓 Apprentissages Critiques (AC) validés</h4>
+      <ul class="ac-list">
+        <li><strong>AC11.01</strong> — Maîtriser les lois fondamentales de l'électricité afin d'intervenir sur des équipements de réseaux et télécommunications.<br><span class="ac-justif">Justification : Compréhension des signaux électriques et optiques utilisés dans le câblage réseau (cuivre, normes T568A/B).</span></li>
+        <li><strong>AC11.03</strong> — Configurer les fonctions de base du réseau local.<br><span class="ac-justif">Justification : Configuration d'un switch (VLAN basique) et d'un routeur avec adresses IP via CLI Packet Tracer.</span></li>
+      </ul>
+    </div>
+
+    <div class="popup-section">
+      <h4>🎯 Composantes Essentielles (CE) mobilisées</h4>
+      <ul class="ac-list ce">
+        <li><strong>CE1.01</strong> — Choisir les solutions et technologies réseaux adaptées.<br><span class="ac-justif">Action : Sélection des normes de câblage et d'adressage appropriées à la topologie demandée.</span></li>
+        <li><strong>CE2.01</strong> — Mesurer et analyser les signaux.<br><span class="ac-justif">Action : Tests de continuité et vérification de la connectivité entre postes.</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SAE 1.04 -->
+<div class="popup-overlay" id="p-sae104">
+  <div class="popup-box">
+    <div class="popup-close"><button onclick="closePopup('p-sae104')">✕</button></div>
+    <span class="popup-code-badge">SAE 1.04</span>
+    <h2>Construire un réseau informatique simple</h2>
+
+    <div class="popup-section">
+      <h4>📋 Contexte</h4>
+      <p>Conception et déploiement d'un réseau local complet : plan d'adressage, segmentation en VLANs, configuration d'un switch manageable et d'un routeur, tests de connectivité inter-segments.</p>
+    </div>
+
+    <div class="popup-section">
+      <h4>🛠️ Tâches réalisées personnellement</h4>
+      <ul>
+        <li><strong>Plan d'adressage</strong> : découpage VLSM en sous-réseaux adaptés aux besoins.</li>
+        <li><strong>Configuration VLANs</strong> : création et association des VLANs sur switch Cisco.</li>
+        <li><strong>Routage inter-VLAN</strong> : configuration des interfaces et des routes statiques.</li>
+        <li><strong>Tests &amp; validation</strong> : ping inter-postes et vérification des ACL.</li>
+      </ul>
+    </div>
+
+    <div class="popup-section">
+      <h4>🖼️ Preuves</h4>
+      <div class="proof-visual">
+        <div class="proof-placeholder">📎 Topologie Packet Tracer + plan d'adressage à venir</div>
+        <div class="proof-placeholder">📎 Capture configuration VLANs à venir</div>
+      </div>
+    </div>
+
+    <div class="popup-section">
+      <h4>🎓 Apprentissages Critiques (AC) validés</h4>
+      <ul class="ac-list">
+        <li><strong>AC11.03</strong> — Configurer les fonctions de base du réseau local.<br><span class="ac-justif">Justification : Mise en place complète de la segmentation VLAN et du routage inter-VLAN sur équipements Cisco.</span></li>
+        <li><strong>AC11.04</strong> — Maîtriser les rôles et principes des systèmes d'exploitation réseau.<br><span class="ac-justif">Justification : Utilisation de l'IOS Cisco en mode configuration pour paramétrer switch et routeur.</span></li>
+      </ul>
+    </div>
+
+    <div class="popup-section">
+      <h4>🎯 Composantes Essentielles (CE) mobilisées</h4>
+      <ul class="ac-list ce">
+        <li><strong>CE1.01</strong> — Choisir les solutions et technologies réseaux adaptées.<br><span class="ac-justif">Action : Architecture en VLANs choisie pour segmenter le trafic et améliorer la sécurité du réseau.</span></li>
+        <li><strong>CE1.04</strong> — Communiquer avec les acteurs du projet.<br><span class="ac-justif">Action : Documentation technique claire du plan d'adressage et des choix d'architecture.</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SAE 2.03 -->
+<div class="popup-overlay" id="p-sae203">
+  <div class="popup-box">
+    <div class="popup-close"><button onclick="closePopup('p-sae203')">✕</button></div>
+    <span class="popup-code-badge">SAE 2.03 — Projet phare</span>
+    <h2>Gestion du trafic aérien</h2>
+
+    <div class="popup-section">
+      <h4>📋 Contexte</h4>
+      <p>Application web Django (CRUD complet) pour gérer aéroports, pistes, compagnies, types d'avions, avions et vols. Logique d'attribution automatique de piste avec vérification de disponibilité (fenêtre ±10 min, suggestion +15 min). Déployée sur 2 VM Debian (Nginx + Gunicorn + MariaDB). Équipe : Adam, Jordan, Yacine.</p>
+    </div>
+
+    <div class="popup-section">
+      <h4>🛠️ Tâches réalisées personnellement</h4>
+      <ul>
+        <li><strong>Setup Django</strong> : initialisation du projet, configuration settings/urls.</li>
+        <li><strong>models.py + migrations</strong> : conception du schéma relationnel complet (6 entités, FK, related_name).</li>
+        <li><strong>CRUD Aéroport &amp; TypeAvion</strong> : vues, formulaires et templates pour les deux entités.</li>
+        <li><strong>Algorithme critique</strong> : fonction <code>trouver_piste_libre()</code> — filtrage longueur, blocage ±10 min, suggestion +15 min.</li>
+        <li><strong>Import CSV</strong> : définition du format et implémentation de l'import de vols en masse.</li>
+        <li><strong>Déploiement</strong> : installation VM Debian, configuration Nginx/Gunicorn, procédure d'installation.</li>
+      </ul>
+    </div>
+
+    <div class="popup-section">
+      <h4>🖼️ Preuves</h4>
+      <div class="proof-visual">
+        <div class="proof-placeholder">📎 Captures de l'interface (formulaire vol + suggestion de piste) à venir</div>
+        <pre class="popup-code"><span class="cm"># trouver_piste_libre() — logique d'attribution automatique</span>
+<span class="kw">def</span> <span class="fn">trouver_piste_libre</span>(aeroport_arrivee, type_avion, heure_arrivee):
+    pistes = Piste.objects.filter(
+        aeroport=aeroport_arrivee,
+        longueur__gte=type_avion.longueur_piste_necessaire
+    )
+    <span class="kw">for</span> piste <span class="kw">in</span> pistes:
+        debut = heure_arrivee - timedelta(minutes=<span class="nm">10</span>)
+        fin   = heure_arrivee + timedelta(minutes=<span class="nm">10</span>)
+        <span class="kw">if not</span> Vol.objects.filter(piste_arrivee=piste,
+                datetime_arrivee__gte=debut, datetime_arrivee__lte=fin):
+            <span class="kw">return</span> piste, heure_arrivee
+    <span class="kw">return</span> <span class="kw">None</span>, heure_arrivee + timedelta(minutes=<span class="nm">15</span>)</pre>
+      </div>
+    </div>
+
+    <div class="popup-section">
+      <h4>🎓 Apprentissages Critiques (AC) validés</h4>
+      <ul class="ac-list">
+        <li><strong>AC23.01</strong> — Utiliser des outils informatiques et logiciels de traitement de données.<br><span class="ac-justif">Justification : Développement complet d'une application web avec Django ORM et MariaDB, traitant des données structurées complexes (vols, pistes, contraintes temporelles).</span></li>
+        <li><strong>AC21.01</strong> — Déployer et caractériser des solutions réseau dans des contextes variés.<br><span class="ac-justif">Justification : Déploiement de l'application sur 2 VM Debian avec configuration Nginx (reverse proxy) et Gunicorn (serveur WSGI), reproduisant une architecture de production.</span></li>
+        <li><strong>AC13.02</strong> — Administrer et gérer les ressources du poste de travail.<br><span class="ac-justif">Justification : Administration des VMs Linux (installation paquets, services systemd, configuration réseau interne entre VMs).</span></li>
+      </ul>
+    </div>
+
+    <div class="popup-section">
+      <h4>🎯 Composantes Essentielles (CE) mobilisées</h4>
+      <ul class="ac-list ce">
+        <li><strong>CE3.01</strong> — Utiliser des langages de programmation adaptés.<br><span class="ac-justif">Action : Python/Django pour le backend, SQL (MariaDB) pour la persistance, HTML/Bootstrap pour le frontend.</span></li>
+        <li><strong>CE3.03</strong> — Concevoir et réaliser des outils logiciels pour les services réseaux.<br><span class="ac-justif">Action : Algorithme d'attribution de piste traduisant une contrainte métier aéronautique en logique programmée testable.</span></li>
+      </ul>
+    </div>
+
+    <div class="popup-actions">
+      <a class="btn-popup primary" href="projets/sae-2-03-trafic-aerien.html">Page complète du projet</a>
+      <a class="btn-popup" href="https://github.com/S-Adam68/sae-trafic-aerien" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn-popup" href="projets/gantt-trafic-aerien.html" target="_blank" rel="noopener">Diagramme de Gantt</a>
+    </div>
+  </div>
+</div>
+
+<!-- SAE 2.04 -->
+<div class="popup-overlay" id="p-sae204">
+  <div class="popup-box">
+    <div class="popup-close"><button onclick="closePopup('p-sae204')">✕</button></div>
+    <span class="popup-code-badge">SAE 2.04</span>
+    <h2>Étude et déploiement d'une solution télécom / WiFi</h2>
+
+    <div class="popup-section">
+      <h4>📋 Contexte</h4>
+      <p>Analyse de la couverture radio d'un bâtiment et déploiement d'une solution WiFi : relevés de terrain, heatmap de couverture, configuration de points d'accès et optimisation du signal.</p>
+    </div>
+
+    <div class="popup-section">
+      <h4>🛠️ Tâches réalisées personnellement</h4>
+      <ul>
+        <li><strong>Relevés terrain</strong> : mesure des niveaux de signal WiFi par zone du bâtiment.</li>
+        <li><strong>Cartographie</strong> : production d'une heatmap de couverture radio.</li>
+        <li><strong>Configuration AP</strong> : paramétrage des points d'accès (SSID, canal, puissance).</li>
+        <li><strong>Analyse &amp; recommandations</strong> : rapport d'optimisation de la couverture.</li>
+      </ul>
+    </div>
+
+    <div class="popup-section">
+      <h4>🖼️ Preuves</h4>
+      <div class="proof-visual">
+        <div class="proof-placeholder">📎 Heatmap de couverture WiFi à venir</div>
+        <div class="proof-placeholder">📎 Rapport / compte-rendu à venir</div>
+      </div>
+    </div>
+
+    <div class="popup-section">
+      <h4>🎓 Apprentissages Critiques (AC) validés</h4>
+      <ul class="ac-list">
+        <li><strong>AC12.03</strong> — Comprendre les architectures des équipements d'un réseau de télécommunications.<br><span class="ac-justif">Justification : Configuration et analyse d'équipements WiFi (points d'accès, contrôleurs), compréhension des standards 802.11.</span></li>
+        <li><strong>AC11.01</strong> — Maîtriser les lois fondamentales de l'électricité pour intervenir sur des équipements.<br><span class="ac-justif">Justification : Mesure et interprétation des niveaux de signal radio (dBm) et compréhension de la propagation des ondes.</span></li>
+      </ul>
+    </div>
+
+    <div class="popup-section">
+      <h4>🎯 Composantes Essentielles (CE) mobilisées</h4>
+      <ul class="ac-list ce">
+        <li><strong>CE2.01</strong> — Mesurer et analyser les signaux.<br><span class="ac-justif">Action : Relevés de mesures WiFi systématiques et production d'une cartographie de couverture exploitable.</span></li>
+        <li><strong>CE2.04</strong> — Déployer des équipements de réseaux sans fil.<br><span class="ac-justif">Action : Configuration et optimisation du positionnement des points d'accès pour maximiser la couverture.</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Cybersécurité -->
+<div class="popup-overlay" id="p-cyber">
+  <div class="popup-box">
+    <div class="popup-close"><button onclick="closePopup('p-cyber')">✕</button></div>
+    <span class="popup-code-badge">Projet collectif — avec Hakan Akakca</span>
+    <h2>Sensibilisation à la cybersécurité</h2>
+
+    <div class="popup-section">
+      <h4>📋 Contexte</h4>
+      <p>Création d'un support pédagogique vidéo destiné à sensibiliser des utilisateurs non techniques aux bonnes pratiques de sécurité informatique : phishing, ingénierie sociale, gestion des mots de passe et protection des données personnelles.</p>
+    </div>
+
+    <div class="popup-section">
+      <h4>🛠️ Tâches réalisées personnellement</h4>
+      <ul>
+        <li><strong>Scénario &amp; script</strong> : rédaction du contenu pédagogique et du storyboard.</li>
+        <li><strong>Production</strong> : tournage et montage des séquences de sensibilisation.</li>
+        <li><strong>Thèmes couverts</strong> : reconnaissance du phishing, mots de passe forts, authentification à deux facteurs, RGPD.</li>
+      </ul>
+    </div>
+
+    <div class="popup-section">
+      <h4>🖼️ Preuves</h4>
+      <div class="proof-visual">
+        <div class="proof-placeholder">📎 Extrait vidéo / miniature à venir</div>
+        <div class="proof-placeholder">📎 Support de présentation (PDF) à venir</div>
+      </div>
+    </div>
+
+    <div class="popup-section">
+      <h4>🎓 Apprentissages Critiques (AC) validés</h4>
+      <ul class="ac-list">
+        <li><strong>AC24.01Cyber</strong> — Sensibiliser les utilisateurs aux risques de sécurité.<br><span class="ac-justif">Justification : Création d'un support vidéo complet couvrant les principales menaces auxquelles font face les utilisateurs non techniques.</span></li>
+        <li><strong>AC24.05Cyber</strong> — Mettre en œuvre les bonnes pratiques de sécurité.<br><span class="ac-justif">Justification : Présentation opérationnelle des gestes de sécurité (mots de passe, 2FA, vigilance phishing) avec exemples concrets.</span></li>
+      </ul>
+    </div>
+
+    <div class="popup-section">
+      <h4>🎯 Composantes Essentielles (CE) mobilisées</h4>
+      <ul class="ac-list ce">
+        <li><strong>CE4.01</strong> — Participer à la valorisation de l'image de l'organisation sur les médias numériques.<br><span class="ac-justif">Action : Production d'un contenu vidéo professionnel et pédagogique diffusable auprès d'un public large.</span></li>
+        <li><strong>CE4.02</strong> — Accompagner les utilisateurs dans leur appropriation des outils numériques.<br><span class="ac-justif">Action : Vulgarisation des concepts de cybersécurité pour un public non initié, avec des exemples du quotidien.</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 </main>
 

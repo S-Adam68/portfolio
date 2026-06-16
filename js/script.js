@@ -63,6 +63,37 @@ const barObserver = new IntersectionObserver((entries) => {
 
 bars.forEach(bar => barObserver.observe(bar));
 
+// ===== Popups preuves =====
+function openPopup(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePopup(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('popup-overlay')) {
+    e.target.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.popup-overlay.open').forEach(el => {
+      el.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  }
+});
+
 // ===== Terminal typing animation =====
 const terminalBody = document.getElementById('terminal-body');
 
