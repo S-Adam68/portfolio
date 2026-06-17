@@ -280,107 +280,123 @@
 
     <div class="projects-grid">
 
-      <article class="project-card reveal">
-        <div class="project-top">
-          <span class="project-code">SAE 1.05</span>
-        </div>
-        <h3>Outil de détection des gros fichiers</h3>
-        <p>
-          Application desktop permettant d'analyser une arborescence de fichiers, de visualiser les
-          fichiers volumineux (≥ 1 Mio) sous forme de graphique camembert interactif, et de générer
-          automatiquement un script de suppression sécurisé (double confirmation).
-        </p>
-        <ul class="tech-list">
-          <li>Python</li><li>PyQt5</li><li>PyQtChart</li><li>PowerShell</li><li>JSON</li>
-        </ul>
-        <button class="project-link" onclick="openPopup('p-sae105')">Voir les preuves &amp; compétences →</button>
-      </article>
+      <!-- Ligne 1 : 3 SAE (moins importants) -->
+      <div class="projects-row row-3">
 
-      <article class="project-card reveal">
-        <div class="project-top">
-          <span class="project-code">SAE 1.01</span>
-        </div>
-        <h3>S'initier aux réseaux informatiques et télécommunications</h3>
-        <p>
-          Découverte des fondamentaux des réseaux : modèle OSI, adressage IP, premiers montages
-          de câbles et configuration d'équipements simples (switch, routeur) en environnement
-          contrôlé.
-        </p>
-        <ul class="tech-list">
-          <li>Réseaux</li><li>Câblage</li><li>Packet Tracer</li>
-        </ul>
-        <button class="project-link" onclick="openPopup('p-sae101')">Voir les preuves &amp; compétences →</button>
-      </article>
+        <article class="project-card reveal">
+          <div class="project-top">
+            <span class="project-code">SAE 1.05</span>
+          </div>
+          <h3>Outil de détection des gros fichiers</h3>
+          <p>
+            Application desktop permettant d'analyser une arborescence de fichiers, de visualiser les
+            fichiers volumineux (≥ 1 Mio) sous forme de graphique camembert interactif, et de générer
+            automatiquement un script de suppression sécurisé (double confirmation).
+          </p>
+          <ul class="tech-list">
+            <li>Python</li><li>PyQt5</li><li>PyQtChart</li><li>PowerShell</li><li>JSON</li>
+          </ul>
+          <button class="project-link" onclick="openPopup('p-sae105')">Voir les preuves &amp; compétences →</button>
+        </article>
 
-      <article class="project-card reveal">
-        <div class="project-top">
-          <span class="project-code">SAE 1.04</span>
-        </div>
-        <h3>Construire un réseau informatique simple</h3>
-        <p>
-          Conception et mise en place d'un petit réseau local : plan d'adressage, configuration
-          des équipements actifs (switchs, routeur), tests de connectivité et de communication
-          entre postes.
-        </p>
-        <ul class="tech-list">
-          <li>VLAN</li><li>Adressage IP</li><li>Switch / Routeur</li>
-        </ul>
-        <button class="project-link" onclick="openPopup('p-sae104')">Voir les preuves &amp; compétences →</button>
-      </article>
+        <article class="project-card reveal">
+          <div class="project-top">
+            <span class="project-code">SAE 1.04</span>
+          </div>
+          <h3>Construire un réseau d'entreprise</h3>
+          <p>
+            Conception et mise en place d'un réseau d'entreprise multi-sites sous GNS3 : VLANs,
+            routage inter-segments, serveurs DHCP, sauvegarde et administration — topologie complète
+            avec équipements simulés.
+          </p>
+          <ul class="tech-list">
+            <li>GNS3</li><li>VLAN</li><li>Adressage IP</li><li>DHCP</li><li>Routage</li>
+          </ul>
+          <button class="project-link" onclick="openPopup('p-sae104')">Voir les preuves &amp; compétences →</button>
+        </article>
 
-      <article class="project-card featured reveal">
-        <div class="project-top">
-          <span class="project-code">SAE 2.03</span>
-          <span class="project-pill">Projet phare</span>
-          <span class="project-pill pill-secondary">Projet d'équipe (3 pers.)</span>
-        </div>
-        <h3>Gestion du trafic aérien</h3>
-        <p>
-          Application web Django (CRUD complet) pour gérer aéroports, pistes, compagnies, avions
-          et vols, avec attribution automatique des pistes d'atterrissage et import de vols par
-          CSV — déployée sur 2 VM Debian (Nginx, Gunicorn, MariaDB).
-        </p>
-        <ul class="tech-list">
-          <li>Python</li><li>Django</li><li>MariaDB</li><li>Nginx</li><li>Gunicorn</li>
-        </ul>
-        <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:auto;">
-          <button class="project-link" onclick="openPopup('p-sae203')">Voir les preuves &amp; compétences →</button>
-          <a class="project-link" href="projets/sae-2-03-trafic-aerien.html">Page dédiée →</a>
-        </div>
-      </article>
+        <article class="project-card reveal">
+          <div class="project-top">
+            <span class="project-code">SAE 2.04</span>
+          </div>
+          <h3>Étude et déploiement d'une solution télécom / WiFi</h3>
+          <p>
+            Analyse de la couverture radio et déploiement d'une solution sans-fil : relevés
+            de terrain, configuration de points d'accès et optimisation de la couverture
+            du signal.
+          </p>
+          <ul class="tech-list">
+            <li>WiFi</li><li>Points d'accès</li><li>Relevés radio</li>
+          </ul>
+          <button class="project-link" onclick="openPopup('p-sae204')">Voir les preuves &amp; compétences →</button>
+        </article>
 
-      <article class="project-card reveal">
-        <div class="project-top">
-          <span class="project-code">SAE 2.04</span>
-        </div>
-        <h3>Étude et déploiement d'une solution télécom / WiFi</h3>
-        <p>
-          Analyse de la couverture radio et déploiement d'une solution sans-fil : relevés
-          de terrain, configuration de points d'accès et optimisation de la couverture
-          du signal.
-        </p>
-        <ul class="tech-list">
-          <li>WiFi</li><li>Points d'accès</li><li>Relevés radio</li>
-        </ul>
-        <button class="project-link" onclick="openPopup('p-sae204')">Voir les preuves &amp; compétences →</button>
-      </article>
+      </div>
 
-      <article class="project-card reveal">
-        <div class="project-top">
-          <span class="project-code">Projet collectif</span>
-          <span class="project-pill pill-secondary">Avec Hakan Akakca</span>
-        </div>
-        <h3>Sensibilisation à la cybersécurité</h3>
-        <p>
-          Création d'un support pédagogique (vidéo) visant à sensibiliser les utilisateurs aux
-          bonnes pratiques de sécurité : phishing, ingénierie sociale, gestion des mots de passe
-          et protection des données personnelles.
-        </p>
-        <ul class="tech-list">
-          <li>Cybersécurité</li><li>Production vidéo</li><li>Sensibilisation</li>
-        </ul>
-        <button class="project-link" onclick="openPopup('p-cyber')">Voir les preuves &amp; compétences →</button>
-      </article>
+      <!-- Ligne 2 : Cybersécurité + Projet perso GHL -->
+      <div class="projects-row row-2">
+
+        <article class="project-card reveal">
+          <div class="project-top">
+            <span class="project-code">Projet collectif</span>
+            <span class="project-pill pill-secondary">Avec Hakan Akakca</span>
+          </div>
+          <h3>Sensibilisation à la cybersécurité</h3>
+          <p>
+            Création d'un support pédagogique (vidéo) visant à sensibiliser les utilisateurs aux
+            bonnes pratiques de sécurité : phishing, ingénierie sociale, gestion des mots de passe
+            et protection des données personnelles.
+          </p>
+          <ul class="tech-list">
+            <li>Cybersécurité</li><li>Production vidéo</li><li>Sensibilisation</li>
+          </ul>
+          <button class="project-link" onclick="openPopup('p-cyber')">Voir les preuves &amp; compétences →</button>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-top">
+            <span class="project-code">Projet personnel</span>
+            <span class="project-pill pill-secondary">Sécurité &amp; automatisation</span>
+          </div>
+          <h3>Dépôt sécurisé de token GHL</h3>
+          <p>
+            Formulaire serveur en Python permettant de transmettre un token d'intégration privée
+            GoHighLevel sans jamais l'afficher. Validation stricte de l'identifiant, écriture
+            dans un fichier <code>.env</code> protégé (0600), sans réaffichage après enregistrement.
+          </p>
+          <ul class="tech-list">
+            <li>Python</li><li>Sécurité</li><li>GoHighLevel</li><li>Linux</li>
+          </ul>
+          <button class="project-link" onclick="openPopup('p-ghl-token')">Voir le code &amp; détails →</button>
+        </article>
+
+      </div>
+
+      <!-- Ligne 3 : SAE 2.03 — projet phare, grand bloc seul -->
+      <div class="projects-row row-1">
+
+        <article class="project-card featured reveal">
+          <div class="project-top">
+            <span class="project-code">SAE 2.03</span>
+            <span class="project-pill">Projet phare</span>
+            <span class="project-pill pill-secondary">Projet d'équipe (3 pers.)</span>
+          </div>
+          <h3>Gestion du trafic aérien</h3>
+          <p>
+            Application web Django (CRUD complet) pour gérer aéroports, pistes, compagnies, avions
+            et vols, avec attribution automatique des pistes d'atterrissage et import de vols par
+            CSV — déployée sur 2 VM Debian (Nginx, Gunicorn, MariaDB).
+          </p>
+          <ul class="tech-list">
+            <li>Python</li><li>Django</li><li>MariaDB</li><li>Nginx</li><li>Gunicorn</li>
+          </ul>
+          <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:auto;">
+            <button class="project-link" onclick="openPopup('p-sae203')">Voir les preuves &amp; compétences →</button>
+            <a class="project-link" href="projets/sae-2-03-trafic-aerien.html">Page dédiée →</a>
+          </div>
+        </article>
+
+      </div>
 
     </div>
   </section>
@@ -490,7 +506,7 @@
     <div class="popup-section">
       <h4>🖼️ Preuves</h4>
       <div class="proof-visual">
-        <div class="proof-placeholder">📎 Capture d'écran à venir (interface + graphique camembert)</div>
+        <a class="proof-link" href="https://docs.google.com/presentation/d/1Hb5dk5Ylq6TsFJB2C_wUBq_0Lq9yMc407RE_o0-np4s/edit?usp=sharing" target="_blank" rel="noopener">📊 Présentation du projet (Google Slides) →</a>
         <pre class="popup-code"><span class="cm"># Analyse_Arborescence_.py — parcours récursif</span>
 <span class="kw">def</span> <span class="fn">analyser</span>(repertoire):
     resultats = []
@@ -526,54 +542,6 @@
   </div>
 </div>
 
-<!-- SAE 1.01 -->
-<div class="popup-overlay" id="p-sae101">
-  <div class="popup-box">
-    <div class="popup-close"><button onclick="closePopup('p-sae101')">✕</button></div>
-    <span class="popup-code-badge">SAE 1.01</span>
-    <h2>S'initier aux réseaux informatiques et télécommunications</h2>
-
-    <div class="popup-section">
-      <h4>📋 Contexte</h4>
-      <p>Première SAE du BUT R&T, orientée découverte : compréhension du modèle OSI, adressage IP, câblage cuivre (T568B) et configuration d'équipements réseau simples en salle de TP.</p>
-    </div>
-
-    <div class="popup-section">
-      <h4>🛠️ Tâches réalisées personnellement</h4>
-      <ul>
-        <li><strong>Câblage</strong> : réalisation de câbles droits et croisés avec sertissage RJ45 (norme T568B).</li>
-        <li><strong>Adressage IP</strong> : calcul de sous-réseaux, plan d'adressage VLSM.</li>
-        <li><strong>Configuration de base</strong> : paramétrage d'un switch et d'un routeur via console (Packet Tracer).</li>
-        <li><strong>Documentation</strong> : rédaction du compte-rendu de TP.</li>
-      </ul>
-    </div>
-
-    <div class="popup-section">
-      <h4>🖼️ Preuves</h4>
-      <div class="proof-visual">
-        <div class="proof-placeholder">📎 Schéma de topologie réseau à venir</div>
-        <div class="proof-placeholder">📎 Plan d'adressage IP à venir</div>
-      </div>
-    </div>
-
-    <div class="popup-section">
-      <h4>🎓 Apprentissages Critiques (AC) validés</h4>
-      <ul class="ac-list">
-        <li><strong>AC11.01</strong> — Maîtriser les lois fondamentales de l'électricité afin d'intervenir sur des équipements de réseaux et télécommunications.<br><span class="ac-justif">Justification : Compréhension des signaux électriques et optiques utilisés dans le câblage réseau (cuivre, normes T568A/B).</span></li>
-        <li><strong>AC11.03</strong> — Configurer les fonctions de base du réseau local.<br><span class="ac-justif">Justification : Configuration d'un switch (VLAN basique) et d'un routeur avec adresses IP via CLI Packet Tracer.</span></li>
-      </ul>
-    </div>
-
-    <div class="popup-section">
-      <h4>🎯 Composantes Essentielles (CE) mobilisées</h4>
-      <ul class="ac-list ce">
-        <li><strong>CE1.01</strong> — Choisir les solutions et technologies réseaux adaptées.<br><span class="ac-justif">Action : Sélection des normes de câblage et d'adressage appropriées à la topologie demandée.</span></li>
-        <li><strong>CE2.01</strong> — Mesurer et analyser les signaux.<br><span class="ac-justif">Action : Tests de continuité et vérification de la connectivité entre postes.</span></li>
-      </ul>
-    </div>
-  </div>
-</div>
-
 <!-- SAE 1.04 -->
 <div class="popup-overlay" id="p-sae104">
   <div class="popup-box">
@@ -599,8 +567,19 @@
     <div class="popup-section">
       <h4>🖼️ Preuves</h4>
       <div class="proof-visual">
-        <div class="proof-placeholder">📎 Topologie Packet Tracer + plan d'adressage à venir</div>
-        <div class="proof-placeholder">📎 Capture configuration VLANs à venir</div>
+        <img src="assets/img/gns3-schema.png" alt="Topologie GNS3 — réseau d'entreprise avec VLANs" style="max-width:100%;border-radius:6px;border:1px solid var(--border);">
+        <pre class="popup-code"><span class="cm"># Configuration VLANs — commutateur-1 ET commutateur-fed</span>
+vlan <span class="nm">100</span>
+ name administration
+vlan <span class="nm">200</span>
+ name developpeur
+vlan <span class="nm">300</span>
+ name administrateur
+vlan <span class="nm">999</span>
+ name natif-securise
+exit
+vlan dot1q tag native</pre>
+        <p style="color:var(--text-muted);font-size:.82rem;margin-top:.4rem;">VLAN 100 — 192.168.75.0/29 · VLAN 200 — 192.168.75.8/29 · VLAN 300 — 192.168.75.16/29 · VLAN 999 natif sécurisé (pas de SVI)</p>
       </div>
     </div>
 
@@ -649,7 +628,8 @@
     <div class="popup-section">
       <h4>🖼️ Preuves</h4>
       <div class="proof-visual">
-        <div class="proof-placeholder">📎 Captures de l'interface (formulaire vol + suggestion de piste) à venir</div>
+        <img src="assets/img/trafic-aerien-dashboard.png" alt="Tableau de bord — application Trafic Aérien" style="max-width:100%;border-radius:6px;border:1px solid var(--border);margin-bottom:.75rem;" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div style="display:none;padding:.75rem;border:2px dashed rgba(255,255,255,.12);border-radius:8px;color:#8b949e;font-size:.82rem;text-align:center;margin-bottom:.75rem;">📸 Dashboard Django — à déposer dans assets/img/trafic-aerien-dashboard.png</div>
         <pre class="popup-code"><span class="cm"># trouver_piste_libre() — logique d'attribution automatique</span>
 <span class="kw">def</span> <span class="fn">trouver_piste_libre</span>(aeroport_arrivee, type_avion, heure_arrivee):
     pistes = Piste.objects.filter(
@@ -695,7 +675,7 @@
 <div class="popup-overlay" id="p-sae204">
   <div class="popup-box">
     <div class="popup-close"><button onclick="closePopup('p-sae204')">✕</button></div>
-    <span class="popup-code-badge">SAE 2.04</span>
+    <span class="popup-code-badge">SAE 2.04 — avec Hakan Akakca</span>
     <h2>Étude et déploiement d'une solution télécom / WiFi</h2>
 
     <div class="popup-section">
@@ -716,8 +696,7 @@
     <div class="popup-section">
       <h4>🖼️ Preuves</h4>
       <div class="proof-visual">
-        <div class="proof-placeholder">📎 Heatmap de couverture WiFi à venir</div>
-        <div class="proof-placeholder">📎 Rapport / compte-rendu à venir</div>
+        <a class="proof-link" href="https://github.com/kior5234-blip/depot-projet/blob/main/Analyse.pdf" target="_blank" rel="noopener">📄 Rapport d'analyse WiFi (PDF) →</a>
       </div>
     </div>
 
@@ -736,6 +715,65 @@
         <li><strong>CE2.04</strong> — Déployer des équipements de réseaux sans fil.<br><span class="ac-justif">Action : Configuration et optimisation du positionnement des points d'accès pour maximiser la couverture.</span></li>
       </ul>
     </div>
+  </div>
+</div>
+
+<!-- Projet perso GHL token -->
+<div class="popup-overlay" id="p-ghl-token">
+  <div class="popup-box">
+    <div class="popup-close"><button onclick="closePopup('p-ghl-token')">✕</button></div>
+    <span class="popup-code-badge">Projet personnel — Sécurité &amp; automatisation</span>
+    <h2>Dépôt sécurisé de token GHL</h2>
+
+    <div class="popup-section">
+      <h4>📋 Contexte</h4>
+      <p>Dans le cadre de mon travail avec l'agence Ybia System, j'avais besoin de transmettre des tokens d'intégration privée GoHighLevel à un serveur sans les exposer dans une conversation ou un fichier public. J'ai développé un formulaire serveur en Python qui reçoit le token, le valide, l'écrit dans un fichier <code>.env</code> protégé et ne l'affiche jamais après enregistrement.</p>
+    </div>
+
+    <div class="popup-section">
+      <h4>🖼️ Preuves</h4>
+      <div class="proof-visual">
+        <img src="assets/img/ghl-token-form.png" alt="Formulaire de dépôt sécurisé de token GHL" style="max-width:100%;border-radius:6px;border:1px solid var(--border);" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div style="display:none;padding:.75rem;border:2px dashed rgba(255,255,255,.12);border-radius:8px;color:#8b949e;font-size:.82rem;text-align:center;">📸 Capture du formulaire — à déposer dans assets/img/ghl-token-form.png</div>
+        <p style="color:var(--text-muted);font-size:.82rem;margin-top:.4rem;">Le formulaire permet de déposer un token privé GHL : l'utilisateur renseigne le Location ID et le token, enregistré directement côté serveur sans jamais être réaffiché.</p>
+      </div>
+    </div>
+
+    <div class="popup-section">
+      <h4>💻 Extrait de code essentiel</h4>
+      <pre class="popup-code"><span class="cm"># Validation stricte de l'identifiant et du token</span>
+ENV_PATH = Path(<span class="st">"/opt/data/.env"</span>)
+LOCATION_RE = re.compile(<span class="st">r"^[A-Za-z0-9_-]{8,80}$"</span>)
+
+<span class="kw">def</span> <span class="fn">write_env_value</span>(key_name: str, key_value: str) -> <span class="kw">None</span>:
+    lines = ENV_PATH.read_text(errors=<span class="st">"ignore"</span>).splitlines() <span class="kw">if</span> ENV_PATH.exists() <span class="kw">else</span> []
+    out = []
+    updated = <span class="kw">False</span>
+    <span class="kw">for</span> line <span class="kw">in</span> lines:
+        <span class="kw">if</span> line.strip().startswith(<span class="st">f"</span>{key_name}<span class="st">="</span>):
+            out.append(<span class="st">f"</span>{key_name}<span class="st">=</span>{key_value}<span class="st">"</span>)
+            updated = <span class="kw">True</span>
+        <span class="kw">else</span>:
+            out.append(line)
+    <span class="kw">if not</span> updated:
+        out.append(<span class="st">f"</span>{key_name}<span class="st">=</span>{key_value}<span class="st">"</span>)
+    ENV_PATH.write_text(<span class="st">"\n"</span>.join(out) + <span class="st">"\n"</span>)
+    os.chmod(ENV_PATH, <span class="nm">0o600</span>)  <span class="cm"># accès serveur uniquement</span>
+
+<span class="cm"># Récupération et validation des entrées formulaire</span>
+location_id = form.get(<span class="st">"location_id"</span>, [<span class="st">""</span>])[<span class="nm">0</span>].strip()
+token       = form.get(<span class="st">"token"</span>,       [<span class="st">""</span>])[<span class="nm">0</span>].strip()
+
+<span class="kw">if not</span> LOCATION_RE.match(location_id):
+    <span class="kw">raise</span> ValueError(<span class="st">"Location ID invalide"</span>)
+<span class="kw">if</span> len(token) < <span class="nm">20</span> <span class="kw">or</span> <span class="st">"\n"</span> <span class="kw">in</span> token:
+    <span class="kw">raise</span> ValueError(<span class="st">"Token invalide"</span>)
+
+key_name = <span class="st">f"GHL_LOCATION_TOKEN_</span>{location_id}<span class="st">"</span>
+write_env_value(key_name, token)</pre>
+      <p style="color:var(--text-muted);font-size:.85rem;margin-top:.75rem;">Validation du Location ID par regex, nom de variable structuré <code>GHL_LOCATION_TOKEN_&lt;ID&gt;</code>, écriture dans <code>.env</code> avec permissions <code>0600</code> — le token n'est jamais réaffiché ni transmis dans une conversation.</p>
+    </div>
+
   </div>
 </div>
 
@@ -763,8 +801,7 @@
     <div class="popup-section">
       <h4>🖼️ Preuves</h4>
       <div class="proof-visual">
-        <div class="proof-placeholder">📎 Extrait vidéo / miniature à venir</div>
-        <div class="proof-placeholder">📎 Support de présentation (PDF) à venir</div>
+        <a class="proof-link" href="https://www.youtube.com/watch?v=PUOPbD3qgug" target="_blank" rel="noopener">▶ Vidéo de sensibilisation — YouTube →</a>
       </div>
     </div>
 
